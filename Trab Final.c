@@ -11,17 +11,20 @@ typedef struct{
 //void simularBatalha(heroes * herois[], heroes *thanos){
 
 //}
-heroes** selecaoParaAtaque(heroes herois[]){
+heroes** selecaoParaAtaque(heroes herois[]){ //FEAT. José and Müller
     heroes **locao = (heroes*) malloc( sizeof(heroes*)*11);
     int i,c=0, escolha=0;
-    for (i=0 ; i<11 ; i++){        
-        printf("Escolha se o %s vai entrar:\n", herois[i]->heroi); 
+    for (i=0 ; i<11 ; i++){     
+        locao[i] = NULL;   
+        printf("Escolha se o %s vai entrar:\n", herois[i].heroi); 
         printf("SIM - 1 || Não - 2\n");        
         scanf("%d", &escolha);       
         if(escolha == 1){
-        locao[c] = &herois[i];
-        c++
+            locao[c] = &herois[i];
+            c++
         }
+        return locao;
+    }
 }
 void imprime(heroes *thanos, heroes herois[]){
     int i;
@@ -66,8 +69,14 @@ int i;
 heroes thanos, herois[11];
 leHeroi(&thanos, herois);
 imprime(&thanos, herois);
-selecaoParaAtaque(herois);
+heroes ** locao = selecaoParaAtaque(herois);
+
+for(i=0;i<11;i++){
+    if(locao[i] != NULL){
+        printf("%d",locao[i]->poder);
+    }
 }
+
 
     
 
